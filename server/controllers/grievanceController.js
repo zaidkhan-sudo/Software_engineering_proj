@@ -8,6 +8,7 @@ const AppError = require('../utils/AppError');
 const asyncHandler = require('../utils/asyncHandler');
 const { success } = require('../utils/apiResponse');
 const { generateTrackingId } = require('../services/trackingIdService');
+const notificationService = require('../services/notificationService');
 const { ROLES, STATUSES, VALID_TRANSITIONS, ERROR_CODES } = require('../utils/constants');
 
 /**
@@ -18,10 +19,44 @@ function canTransition(currentStatus, newStatus) {
 }
 
 /**
- * Notification stub (will be fully implemented in Phase 6 with Socket.IO)
+ * Real-time and persistent notification on grievance status change
  */
 async function notifyStatusChange(grievance, fromStatus, toStatus, remark, actor) {
-  // Stub for Phase 6 Socket.IO & notification persistence
+  try {
+    const isCitizenActor = actor.role === ROLES.CITIZEN;
+    const citizenId = grievance.citizen._id || grievance.citizen;
+
+    if (!isCitizenActor) {
+      // Officer or Admin changed status -> notify citizen
+      await notificationService.notifyUser(citizenId, {
+        message: `Grievance ${grievance.trackingId} status updated to ${toStatus}: "${remark}"`,
+        grievanceId: grievance._id,
+        event: 'status-update',
+        payload: {
+          trackingId: grievance.trackingId,
+          newStatus: toStatus,
+          message: remark
+        }
+      });
+    } else {
+      // Citizen changed status (e.g. REOPENED) -> notify assigned officer if present
+      if (grievance.assignedOfficer) {
+        const officerId = grievance.assignedOfficer._id || grievance.assignedOfficer;
+        await notificationService.notifyUser(officerId, {
+          message: `Grievance ${grievance.trackingId} has been reopened by citizen: "${remark}"`,
+          grievanceId: grievance._id,
+          event: 'status-update',
+          payload: {
+            trackingId: grievance.trackingId,
+            newStatus: toStatus,
+            message: remark
+          }
+        });
+      }
+    }
+  } catch (err) {
+    console.error('Failed to dispatch status notification:', err.message);
+  }
 }
 
 /**
@@ -477,6 +512,18 @@ const assignGrievance = asyncHandler(async (req, res) => {
     remark
   });
 
+  // Notify assigned officer if assigned
+  if (grievance.assignedOfficer) {
+    try {
+      await notificationService.notifyUser(grievance.assignedOfficer, {
+        message: `You have been assigned to grievance ${grievance.trackingId}`,
+        grievanceId: grievance._id
+      });
+    } catch (err) {
+      console.error('Failed to notify assigned officer:', err.message);
+    }
+  }
+
   const populatedGrievance = await Grievance.findById(grievance._id)
     .select('-attachments.data')
     .populate('citizen', 'name email')
@@ -524,6 +571,28 @@ const addComment = asyncHandler(async (req, res) => {
     'author',
     'name role'
   );
+
+  // Dispatch notification for comment (citizen -> assigned officer, staff public -> citizen)
+  try {
+    const isCitizen = req.user.role === ROLES.CITIZEN;
+    if (isCitizen) {
+      if (grievance.assignedOfficer) {
+        const officerId = grievance.assignedOfficer._id || grievance.assignedOfficer;
+        await notificationService.notifyUser(officerId, {
+          message: `New comment on grievance ${grievance.trackingId} from citizen: "${text.trim().slice(0, 60)}"`,
+          grievanceId: grievance._id
+        });
+      }
+    } else if (!safeIsInternal) {
+      const citizenId = grievance.citizen._id || grievance.citizen;
+      await notificationService.notifyUser(citizenId, {
+        message: `New official comment on grievance ${grievance.trackingId}: "${text.trim().slice(0, 60)}"`,
+        grievanceId: grievance._id
+      });
+    }
+  } catch (err) {
+    console.error('Failed to notify comment:', err.message);
+  }
 
   return success(
     res,

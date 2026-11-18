@@ -59,7 +59,7 @@ This file is the **step-by-step build plan**. `README.md` is the **source of tru
 - [x] Phase 1 — Backend skeleton
 - [x] Phase 2 — Auth, core models, seed
 - [x] Phase 3 — Departments, Users, Categories
-- [ ] Phase 4 — Grievance filing and reading
+- [x] Phase 4 — Grievance filing and reading
 - [ ] Phase 5 — Status workflow, assignment, comments, feedback, reopen
 - [ ] Phase 6 — Notifications and Socket.IO
 - [ ] Phase 7 — Analytics, audit log, escalation

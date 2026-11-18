@@ -1,0 +1,749 @@
+{
+  "info": {
+    "name": "Public Grievance Tracking System API",
+    "_postman_id": "c1f7b889-4fa2-4309-8d77-94e82df4b611",
+    "description": "Comprehensive API collection for the Public Grievance Tracking System covering Citizen, Officer, Admin, Notification, Analytics, and Job endpoints.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5001",
+      "type": "string"
+    },
+    {
+      "key": "token",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "cronSecret",
+      "value": "dev_cron_secret_12345",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Health",
+      "item": [
+        {
+          "name": "Health Check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/health",
+              "host": ["{{baseUrl}}"],
+              "path": ["health"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register Citizen",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Demo Citizen\",\n  \"email\": \"citizen.demo@grievance.local\",\n  \"password\": \"citizen123\",\n  \"phone\": \"9876543210\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/auth/register",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "auth", "register"]
+            }
+          }
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@grievance.local\",\n  \"password\": \"admin123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/auth/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "auth", "login"]
+            }
+          }
+        },
+        {
+          "name": "Get Profile (Me)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/auth/me",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "auth", "me"]
+            }
+          }
+        },
+        {
+          "name": "Update Profile",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Demo Citizen Updated\",\n  \"phone\": \"9123456789\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/auth/me",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "auth", "me"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Categories",
+      "item": [
+        {
+          "name": "List Active Categories",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/categories",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "categories"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Departments (Admin Only)",
+      "item": [
+        {
+          "name": "List Departments",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/departments",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "departments"]
+            }
+          }
+        },
+        {
+          "name": "Create Department",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Parks & Gardens\",\n  \"description\": \"Public parks maintenance\",\n  \"categoriesHandled\": [\"Parks\", \"Horticulture\"]\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/departments",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "departments"]
+            }
+          }
+        },
+        {
+          "name": "Update Department",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"description\": \"Updated public parks and green spaces management\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/departments/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "departments", ":id"],
+              "variable": [{ "key": "id", "value": "DEPARTMENT_ID" }]
+            }
+          }
+        },
+        {
+          "name": "Deactivate Department (Soft Delete)",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/departments/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "departments", ":id"],
+              "variable": [{ "key": "id", "value": "DEPARTMENT_ID" }]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Users (Admin Only)",
+      "item": [
+        {
+          "name": "List Users",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/users?role=officer&page=1&limit=10",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "users"],
+              "query": [
+                { "key": "role", "value": "officer" },
+                { "key": "page", "value": "1" },
+                { "key": "limit", "value": "10" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Officer",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"New Parks Officer\",\n  \"email\": \"officer.parks@grievance.local\",\n  \"password\": \"officer123\",\n  \"role\": \"officer\",\n  \"department\": \"DEPARTMENT_ID\",\n  \"phone\": \"9876543211\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/users",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "users"]
+            }
+          }
+        },
+        {
+          "name": "Update User",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Senior Officer Name\",\n  \"isActive\": true\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/users/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "users", ":id"],
+              "variable": [{ "key": "id", "value": "USER_ID" }]
+            }
+          }
+        },
+        {
+          "name": "Deactivate User",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/users/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "users", ":id"],
+              "variable": [{ "key": "id", "value": "USER_ID" }]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Grievances",
+      "item": [
+        {
+          "name": "File Grievance (Citizen)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                { "key": "title", "value": "Broken drainage pipeline", "type": "text" },
+                { "key": "description", "value": "Stagnant wastewater pooling near market road.", "type": "text" },
+                { "key": "category", "value": "Drainage", "type": "text" },
+                { "key": "priority", "value": "high", "type": "text" },
+                { "key": "location", "value": "Market Road, Sector 3", "type": "text" },
+                { "key": "attachments", "type": "file", "src": "" }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/grievances",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "grievances"]
+            }
+          }
+        },
+        {
+          "name": "List Grievances (Role-Scoped)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/grievances?status=SUBMITTED&page=1&limit=10",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "grievances"],
+              "query": [
+                { "key": "status", "value": "SUBMITTED" },
+                { "key": "page", "value": "1" },
+                { "key": "limit", "value": "10" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Track Grievance by Tracking ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/grievances/track/:trackingId",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "grievances", "track", ":trackingId"],
+              "variable": [{ "key": "trackingId", "value": "GRV-2026-000001" }]
+            }
+          }
+        },
+        {
+          "name": "Get Grievance Detail by ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/grievances/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "grievances", ":id"],
+              "variable": [{ "key": "id", "value": "GRIEVANCE_ID" }]
+            }
+          }
+        },
+        {
+          "name": "Stream Attachment Image",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/grievances/:id/attachments/:index",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "grievances", ":id", "attachments", ":index"],
+              "variable": [
+                { "key": "id", "value": "GRIEVANCE_ID" },
+                { "key": "index", "value": "0" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Status (Officer/Admin)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"IN_PROGRESS\",\n  \"remark\": \"Assigned field engineer to initiate repair work\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/grievances/:id/status",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "grievances", ":id", "status"],
+              "variable": [{ "key": "id", "value": "GRIEVANCE_ID" }]
+            }
+          }
+        },
+        {
+          "name": "Assign Grievance (Admin Only)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"assignedOfficer\": \"OFFICER_ID\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/grievances/:id/assign",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "grievances", ":id", "assign"],
+              "variable": [{ "key": "id", "value": "GRIEVANCE_ID" }]
+            }
+          }
+        },
+        {
+          "name": "Add Comment",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"text\": \"Work order #402 dispatched to field team.\",\n  \"isInternal\": false\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/grievances/:id/comments",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "grievances", ":id", "comments"],
+              "variable": [{ "key": "id", "value": "GRIEVANCE_ID" }]
+            }
+          }
+        },
+        {
+          "name": "Submit Feedback (Citizen)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"rating\": 5,\n  \"comment\": \"Issue resolved quickly and cleanly. Thank you!\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/grievances/:id/feedback",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "grievances", ":id", "feedback"],
+              "variable": [{ "key": "id", "value": "RESOLVED_GRIEVANCE_ID" }]
+            }
+          }
+        },
+        {
+          "name": "Reopen Grievance (Citizen)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reason\": \"Pothole filling sank after morning rain. Needs second asphalt layer.\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/grievances/:id/reopen",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "grievances", ":id", "reopen"],
+              "variable": [{ "key": "id", "value": "RESOLVED_OR_REJECTED_ID" }]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Notifications",
+      "item": [
+        {
+          "name": "Get Notifications",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/notifications?page=1&limit=10",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "notifications"],
+              "query": [
+                { "key": "page", "value": "1" },
+                { "key": "limit", "value": "10" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Mark Notification as Read",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/notifications/:id/read",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "notifications", ":id", "read"],
+              "variable": [{ "key": "id", "value": "NOTIFICATION_ID" }]
+            }
+          }
+        },
+        {
+          "name": "Mark All Notifications as Read",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/notifications/read-all",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "notifications", "read-all"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Analytics (Admin Only)",
+      "item": [
+        {
+          "name": "Summary Metrics",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/analytics/summary",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "analytics", "summary"]
+            }
+          }
+        },
+        {
+          "name": "By Category Breakdown",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/analytics/by-category",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "analytics", "by-category"]
+            }
+          }
+        },
+        {
+          "name": "Average Resolution Time",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/analytics/resolution-time",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "analytics", "resolution-time"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Audit Logs (Admin Only)",
+      "item": [
+        {
+          "name": "List Audit Logs",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/audit-logs?page=1&limit=20",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "audit-logs"],
+              "query": [
+                { "key": "page", "value": "1" },
+                { "key": "limit", "value": "20" }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Jobs",
+      "item": [
+        {
+          "name": "Trigger Auto-Escalation Job",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "x-cron-secret",
+                "value": "{{cronSecret}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/jobs/escalate",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "jobs", "escalate"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

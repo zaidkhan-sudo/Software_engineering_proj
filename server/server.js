@@ -21,6 +21,7 @@ const app = require('./app');
 const User = require('./models/User');
 const { ROLES } = require('./utils/constants');
 const notificationService = require('./services/notificationService');
+const { scheduleEscalation } = require('./jobs/escalation');
 
 const PORT = process.env.PORT || 5000;
 
@@ -90,6 +91,9 @@ async function startServer() {
   try {
     // Connect to database
     await connectDB();
+
+    // Start auto-escalation cron schedule (0 */6 * * *)
+    scheduleEscalation();
 
     server.listen(PORT, () => {
       console.log(`Server running in ${process.env.NODE_ENV || 'development'} mode on port ${PORT}`);

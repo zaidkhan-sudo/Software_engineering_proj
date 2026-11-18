@@ -1,6 +1,9 @@
 const express = require('express');
 const router = express.Router();
 
-// Routers for Phase 2+ (auth, grievances, departments, users, etc.) will be mounted here.
+const authRoutes = require('./authRoutes');
+
+// Mount Auth routes under /api/v1/auth
+router.use('/auth', authRoutes);
 
 module.exports = router;

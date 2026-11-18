@@ -56,7 +56,7 @@ This file is the **step-by-step build plan**. `README.md` is the **source of tru
 ## 2. Progress Tracker (the AI updates this)
 
 - [x] Phase 0 — Project setup and docs skeleton
-- [ ] Phase 1 — Backend skeleton
+- [x] Phase 1 — Backend skeleton
 - [ ] Phase 2 — Auth, core models, seed
 - [ ] Phase 3 — Departments, Users, Categories
 - [ ] Phase 4 — Grievance filing and reading

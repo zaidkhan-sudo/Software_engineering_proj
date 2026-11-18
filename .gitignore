@@ -1,0 +1,18 @@
+# Dependencies
+node_modules/
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Production builds and packaging
+dist/
+release/
+
+# Testing and coverage
+coverage/
+
+# OS metadata
+.DS_Store
+Thumbs.db

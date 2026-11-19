@@ -9,13 +9,13 @@ export const Table = ({ children, className = '', ...props }) => (
 );
 
 export const TableHead = ({ children, className = '', ...props }) => (
-  <thead className={`bg-slate-50 border-b border-slate-200 text-xs font-semibold text-slate-600 uppercase tracking-wider ${className}`} {...props}>
+  <thead className={`bg-slate-50 border-b border-slate-200 text-sm font-semibold text-slate-700 tracking-wider ${className}`} {...props}>
     {children}
   </thead>
 );
 
 export const TableHeader = ({ children, className = '', ...props }) => (
-  <th className={`px-4 py-3 font-semibold text-slate-700 text-xs tracking-wider whitespace-nowrap align-middle ${className}`} {...props}>
+  <th className={`px-4 py-3.5 font-semibold text-slate-700 text-sm tracking-wider whitespace-nowrap align-middle ${className}`} {...props}>
     {children}
   </th>
 );
@@ -40,7 +40,7 @@ export const TableRow = ({ children, className = '', isClickable = false, ...pro
 );
 
 export const TableCell = ({ children, className = '', ...props }) => (
-  <td className={`px-4 py-3 text-slate-700 text-sm whitespace-nowrap align-middle ${className}`} {...props}>
+  <td className={`px-4 py-3.5 text-slate-800 text-sm whitespace-nowrap align-middle ${className}`} {...props}>
     {children}
   </td>
 );

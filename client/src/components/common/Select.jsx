@@ -31,7 +31,7 @@ export const Select = forwardRef(({
           id={selectId}
           required={required}
           className={`
-            w-full h-10 px-3 pr-9 bg-white border rounded-md text-sm text-slate-900 appearance-none transition-colors
+            w-full h-10 px-3 pr-9 bg-white border rounded-md text-base text-slate-900 appearance-none transition-colors
             focus:outline-none focus:ring-2
             ${error
               ? 'border-rose-400 focus:border-rose-500 focus:ring-rose-500/20'
@@ -58,9 +58,9 @@ export const Select = forwardRef(({
       </div>
 
       {error ? (
-        <p className="text-xs text-rose-600 font-normal leading-tight">{error}</p>
+        <p className="text-sm text-rose-600 font-normal leading-tight">{error}</p>
       ) : helperText ? (
-        <p className="text-xs text-slate-500 leading-tight">{helperText}</p>
+        <p className="text-sm text-slate-500 leading-tight">{helperText}</p>
       ) : null}
     </div>
   );

@@ -8,12 +8,12 @@ export const PriorityBadge = ({ priority, className = '' }) => {
   return (
     <span
       className={`
-        inline-flex items-center gap-1.5 px-2 py-0.5 text-xs font-medium border rounded-md select-none
+        inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-semibold border rounded-md select-none tracking-wide
         ${config.bg} ${config.text} ${config.border}
         ${className}
       `}
     >
-      <span className={`w-1.5 h-1.5 rounded-full ${config.dot}`} />
+      <span className={`w-2 h-2 rounded-full ${config.dot}`} />
       <span>{config.label}</span>
     </span>
   );

@@ -37,7 +37,7 @@ export const Input = forwardRef(({
           type={type}
           required={required}
           className={`
-            w-full h-10 bg-white border rounded-md text-sm text-slate-900 transition-colors
+            w-full h-10 bg-white border rounded-md text-base text-slate-900 transition-colors
             placeholder:text-slate-400
             focus:outline-none focus:ring-2
             ${Icon ? 'pl-9 pr-3' : 'px-3'}
@@ -52,9 +52,9 @@ export const Input = forwardRef(({
       </div>
 
       {error ? (
-        <p className="text-xs text-rose-600 font-normal leading-tight">{error}</p>
+        <p className="text-sm text-rose-600 font-normal leading-tight">{error}</p>
       ) : helperText ? (
-        <p className="text-xs text-slate-500 leading-tight">{helperText}</p>
+        <p className="text-sm text-slate-500 leading-tight">{helperText}</p>
       ) : null}
     </div>
   );

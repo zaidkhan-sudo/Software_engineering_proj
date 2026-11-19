@@ -68,13 +68,13 @@ export const CitizenDashboard = () => {
         <Card>
           <CardContent className="p-4 flex items-center justify-between">
             <div>
-              <p className="text-xs font-medium text-slate-500 uppercase tracking-wider">Total Filed</p>
-              <p className="text-2xl font-semibold text-slate-900 mt-1">
+              <p className="text-sm font-semibold text-slate-500 uppercase tracking-wider">Total Filed</p>
+              <p className="text-3xl font-semibold text-slate-900 mt-1">
                 {loading ? <Skeleton className="h-8 w-12" /> : stats.total}
               </p>
             </div>
-            <div className="w-10 h-10 rounded-md bg-blue-50 border border-blue-100 flex items-center justify-center text-primary-600">
-              <FileText className="w-5 h-5" />
+            <div className="w-11 h-11 rounded-md bg-blue-50 border border-blue-100 flex items-center justify-center text-primary-600">
+              <FileText className="w-6 h-6" />
             </div>
           </CardContent>
         </Card>
@@ -82,13 +82,13 @@ export const CitizenDashboard = () => {
         <Card>
           <CardContent className="p-4 flex items-center justify-between">
             <div>
-              <p className="text-xs font-medium text-slate-500 uppercase tracking-wider">Under Redressal</p>
-              <p className="text-2xl font-semibold text-slate-900 mt-1">
+              <p className="text-sm font-semibold text-slate-500 uppercase tracking-wider">Under Redressal</p>
+              <p className="text-3xl font-semibold text-slate-900 mt-1">
                 {loading ? <Skeleton className="h-8 w-12" /> : stats.pending}
               </p>
             </div>
-            <div className="w-10 h-10 rounded-md bg-amber-50 border border-amber-100 flex items-center justify-center text-amber-600">
-              <Clock className="w-5 h-5" />
+            <div className="w-11 h-11 rounded-md bg-amber-50 border border-amber-100 flex items-center justify-center text-amber-600">
+              <Clock className="w-6 h-6" />
             </div>
           </CardContent>
         </Card>
@@ -96,13 +96,13 @@ export const CitizenDashboard = () => {
         <Card>
           <CardContent className="p-4 flex items-center justify-between">
             <div>
-              <p className="text-xs font-medium text-slate-500 uppercase tracking-wider">Resolved</p>
-              <p className="text-2xl font-semibold text-slate-900 mt-1">
+              <p className="text-sm font-semibold text-slate-500 uppercase tracking-wider">Resolved</p>
+              <p className="text-3xl font-semibold text-slate-900 mt-1">
                 {loading ? <Skeleton className="h-8 w-12" /> : stats.resolved}
               </p>
             </div>
-            <div className="w-10 h-10 rounded-md bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-600">
-              <CheckCircle2 className="w-5 h-5" />
+            <div className="w-11 h-11 rounded-md bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-600">
+              <CheckCircle2 className="w-6 h-6" />
             </div>
           </CardContent>
         </Card>

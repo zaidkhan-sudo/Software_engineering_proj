@@ -70,14 +70,14 @@ export const Sidebar = () => {
                   to={link.to}
                   end={link.end}
                   className={({ isActive }) =>
-                    `flex items-center gap-3 px-3 py-2 text-sm rounded-md transition-colors ${
+                    `flex items-center gap-3 px-3 py-2.5 text-base rounded-md transition-colors ${
                       isActive
-                        ? 'bg-primary-50 text-primary-700 font-medium'
-                        : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
+                        ? 'bg-primary-50 text-primary-700 font-semibold'
+                        : 'text-slate-700 hover:text-slate-900 hover:bg-slate-50 font-medium'
                     }`
                   }
                 >
-                  <Icon className="w-4 h-4 flex-shrink-0" />
+                  <Icon className="w-5 h-5 flex-shrink-0" />
                   <span>{link.label}</span>
                 </NavLink>
               );
@@ -88,11 +88,11 @@ export const Sidebar = () => {
 
       {/* Footer / System Status */}
       <div className="p-4 border-t border-slate-100 bg-slate-50/50">
-        <div className="flex items-center space-x-2 text-xs text-slate-500">
-          <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-          <span className="font-medium text-slate-700">Civic Network Connected</span>
+        <div className="flex items-center space-x-2 text-sm text-slate-600">
+          <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
+          <span className="font-semibold text-slate-700">Civic Network Connected</span>
         </div>
-        <p className="text-[11px] text-slate-400 mt-1">
+        <p className="text-xs text-slate-400 mt-1">
           Municipal Redressal System &bull; v1.0
         </p>
       </div>

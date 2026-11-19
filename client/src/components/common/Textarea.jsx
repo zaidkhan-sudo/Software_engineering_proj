@@ -41,7 +41,7 @@ export const Textarea = forwardRef(({
         value={value}
         required={required}
         className={`
-          w-full px-3 py-2 bg-white border rounded-md text-sm text-slate-900 transition-colors
+          w-full px-3 py-2 bg-white border rounded-md text-base text-slate-900 transition-colors
           placeholder:text-slate-400 resize-y
           focus:outline-none focus:ring-2
           ${error
@@ -54,9 +54,9 @@ export const Textarea = forwardRef(({
       />
 
       {error ? (
-        <p className="text-xs text-rose-600 font-normal leading-tight">{error}</p>
+        <p className="text-sm text-rose-600 font-normal leading-tight">{error}</p>
       ) : helperText ? (
-        <p className="text-xs text-slate-500 leading-tight">{helperText}</p>
+        <p className="text-sm text-slate-500 leading-tight">{helperText}</p>
       ) : null}
     </div>
   );

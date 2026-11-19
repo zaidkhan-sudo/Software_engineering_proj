@@ -11,14 +11,14 @@ export const Navbar = () => {
     <header className="h-16 bg-white border-b border-slate-200 sticky top-0 z-30 flex items-center justify-between px-4 sm:px-6">
       {/* Brand & Context */}
       <div className="flex items-center space-x-3">
-        <div className="w-8 h-8 rounded-md bg-primary-50 border border-primary-100 flex items-center justify-center text-primary-600">
-          <Landmark className="w-4 h-4" />
+        <div className="w-9 h-9 rounded-md bg-primary-50 border border-primary-100 flex items-center justify-center text-primary-600">
+          <Landmark className="w-5 h-5" />
         </div>
         <div>
-          <span className="text-sm font-semibold text-slate-900 block leading-tight">
+          <span className="text-base font-semibold text-slate-900 block leading-tight">
             Municipal Grievance System
           </span>
-          <span className="text-xs text-slate-500 block">
+          <span className="text-sm text-slate-500 block">
             {user?.role === 'admin'
               ? 'Administration Console'
               : user?.role === 'officer'
@@ -38,16 +38,16 @@ export const Navbar = () => {
         {/* User Badge & Profile */}
         <div className="flex items-center space-x-3">
           <div className="text-right hidden sm:block">
-            <div className="text-sm font-medium text-slate-800 leading-tight">
+            <div className="text-base font-semibold text-slate-800 leading-tight">
               {user?.name || 'Authorized User'}
             </div>
-            <div className="text-xs text-slate-500 capitalize">
+            <div className="text-sm text-slate-500 capitalize">
               {user?.role || 'Citizen'}
             </div>
           </div>
 
-          <div className="w-8 h-8 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-600">
-            <UserIcon className="w-4 h-4" />
+          <div className="w-9 h-9 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-600">
+            <UserIcon className="w-5 h-5" />
           </div>
 
           <Button

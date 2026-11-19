@@ -20,7 +20,7 @@ export const CardHeader = ({ children, className = '', ...props }) => (
 
 export const CardTitle = ({ children, className = '', ...props }) => (
   <h3
-    className={`text-base font-semibold text-slate-900 leading-snug ${className}`}
+    className={`text-lg font-semibold text-slate-900 leading-snug ${className}`}
     {...props}
   >
     {children}
@@ -29,7 +29,7 @@ export const CardTitle = ({ children, className = '', ...props }) => (
 
 export const CardDescription = ({ children, className = '', ...props }) => (
   <p
-    className={`text-xs text-slate-500 leading-relaxed ${className}`}
+    className={`text-sm text-slate-500 leading-relaxed ${className}`}
     {...props}
   >
     {children}

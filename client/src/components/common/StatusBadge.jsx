@@ -12,7 +12,7 @@ export const StatusBadge = ({ status, className = '' }) => {
   return (
     <span
       className={`
-        inline-flex items-center px-2 py-0.5 text-xs font-medium border rounded-md select-none
+        inline-flex items-center px-2.5 py-1 text-xs font-semibold border rounded-md select-none tracking-wide
         ${config.bg} ${config.text} ${config.border}
         ${className}
       `}

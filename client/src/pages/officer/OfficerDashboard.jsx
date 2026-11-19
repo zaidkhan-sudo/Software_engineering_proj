@@ -115,13 +115,13 @@ export const OfficerDashboard = () => {
         <Card>
           <CardContent className="p-4 flex items-center justify-between">
             <div>
-              <p className="text-xs font-medium text-slate-500 uppercase tracking-wider">Queue Total</p>
-              <p className="text-2xl font-semibold text-slate-900 mt-1">
+              <p className="text-sm font-semibold text-slate-500 uppercase tracking-wider">Queue Total</p>
+              <p className="text-3xl font-semibold text-slate-900 mt-1">
                 {loading ? <Skeleton className="h-8 w-12" /> : pagination.total}
               </p>
             </div>
-            <div className="w-10 h-10 rounded-md bg-blue-50 border border-blue-100 flex items-center justify-center text-primary-600">
-              <FileText className="w-5 h-5" />
+            <div className="w-11 h-11 rounded-md bg-blue-50 border border-blue-100 flex items-center justify-center text-primary-600">
+              <FileText className="w-6 h-6" />
             </div>
           </CardContent>
         </Card>
@@ -129,13 +129,13 @@ export const OfficerDashboard = () => {
         <Card>
           <CardContent className="p-4 flex items-center justify-between">
             <div>
-              <p className="text-xs font-medium text-slate-500 uppercase tracking-wider">Needs Action</p>
-              <p className="text-2xl font-semibold text-slate-900 mt-1">
+              <p className="text-sm font-semibold text-slate-500 uppercase tracking-wider">Needs Action</p>
+              <p className="text-3xl font-semibold text-slate-900 mt-1">
                 {loading ? <Skeleton className="h-8 w-12" /> : stats.pending}
               </p>
             </div>
-            <div className="w-10 h-10 rounded-md bg-amber-50 border border-amber-100 flex items-center justify-center text-amber-600">
-              <Clock className="w-5 h-5" />
+            <div className="w-11 h-11 rounded-md bg-amber-50 border border-amber-100 flex items-center justify-center text-amber-600">
+              <Clock className="w-6 h-6" />
             </div>
           </CardContent>
         </Card>
@@ -143,13 +143,13 @@ export const OfficerDashboard = () => {
         <Card className={stats.escalated > 0 ? 'border-rose-300 bg-rose-50/20' : ''}>
           <CardContent className="p-4 flex items-center justify-between">
             <div>
-              <p className="text-xs font-medium text-slate-500 uppercase tracking-wider">Escalated</p>
-              <p className={`text-2xl font-semibold mt-1 ${stats.escalated > 0 ? 'text-rose-600 font-bold' : 'text-slate-900'}`}>
+              <p className="text-sm font-semibold text-slate-500 uppercase tracking-wider">Escalated</p>
+              <p className={`text-3xl font-semibold mt-1 ${stats.escalated > 0 ? 'text-rose-600 font-bold' : 'text-slate-900'}`}>
                 {loading ? <Skeleton className="h-8 w-12" /> : stats.escalated}
               </p>
             </div>
-            <div className="w-10 h-10 rounded-md bg-rose-50 border border-rose-100 flex items-center justify-center text-rose-600">
-              <AlertTriangle className="w-5 h-5" />
+            <div className="w-11 h-11 rounded-md bg-rose-50 border border-rose-100 flex items-center justify-center text-rose-600">
+              <AlertTriangle className="w-6 h-6" />
             </div>
           </CardContent>
         </Card>
@@ -157,13 +157,13 @@ export const OfficerDashboard = () => {
         <Card>
           <CardContent className="p-4 flex items-center justify-between">
             <div>
-              <p className="text-xs font-medium text-slate-500 uppercase tracking-wider">Resolved</p>
-              <p className="text-2xl font-semibold text-slate-900 mt-1">
+              <p className="text-sm font-semibold text-slate-500 uppercase tracking-wider">Resolved</p>
+              <p className="text-3xl font-semibold text-slate-900 mt-1">
                 {loading ? <Skeleton className="h-8 w-12" /> : stats.resolved}
               </p>
             </div>
-            <div className="w-10 h-10 rounded-md bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-600">
-              <CheckCircle2 className="w-5 h-5" />
+            <div className="w-11 h-11 rounded-md bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-600">
+              <CheckCircle2 className="w-6 h-6" />
             </div>
           </CardContent>
         </Card>

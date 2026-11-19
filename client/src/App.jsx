@@ -8,11 +8,20 @@ import LoadingScreen from './components/common/LoadingScreen';
 import DashboardLayout from './components/layout/DashboardLayout';
 import RoleRoute from './components/auth/RoleRoute';
 
-// Pages
+// Public & Auth Pages
 import Landing from './pages/public/Landing';
 import Login from './pages/auth/Login';
 import Register from './pages/auth/Register';
+
+// Citizen Pages
 import CitizenDashboard from './pages/citizen/CitizenDashboard';
+import FileGrievance from './pages/citizen/FileGrievance';
+import MyGrievances from './pages/citizen/MyGrievances';
+import GrievanceDetail from './pages/citizen/GrievanceDetail';
+import TrackGrievance from './pages/citizen/TrackGrievance';
+import Profile from './pages/citizen/Profile';
+
+// Officer & Admin Pages
 import OfficerDashboard from './pages/officer/OfficerDashboard';
 import AdminDashboard from './pages/admin/AdminDashboard';
 
@@ -78,10 +87,11 @@ export const App = () => {
           <Route element={<RoleRoute allowedRoles={[ROLES.CITIZEN]} />}>
             <Route element={<DashboardLayout />}>
               <Route path="/citizen" element={<CitizenDashboard />} />
-              <Route path="/citizen/file" element={<CitizenDashboard />} />
-              <Route path="/citizen/grievances" element={<CitizenDashboard />} />
-              <Route path="/citizen/track" element={<CitizenDashboard />} />
-              <Route path="/citizen/profile" element={<CitizenDashboard />} />
+              <Route path="/citizen/file" element={<FileGrievance />} />
+              <Route path="/citizen/grievances" element={<MyGrievances />} />
+              <Route path="/citizen/grievances/:id" element={<GrievanceDetail />} />
+              <Route path="/citizen/track" element={<TrackGrievance />} />
+              <Route path="/citizen/profile" element={<Profile />} />
             </Route>
           </Route>
 

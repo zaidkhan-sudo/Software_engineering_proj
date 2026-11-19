@@ -65,7 +65,7 @@ This file is the **step-by-step build plan**. `README.md` is the **source of tru
 - [x] Phase 7 — Analytics, audit log, escalation
 - [x] Phase 8 — Backend tests and hardening
 - [x] Phase 9 — Client foundation
-- [ ] Phase 10 — Citizen pages
+- [x] Phase 10 — Citizen pages
 - [ ] Phase 11 — Officer pages
 - [ ] Phase 12 — Admin pages
 - [ ] Phase 13 — Real-time notifications in the UI

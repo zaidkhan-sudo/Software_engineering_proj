@@ -41,6 +41,10 @@ Citizens across municipalities face a fragmented, opaque process when reporting 
 
 ## ✨ Features
 
+### Public
+
+- Landing page with a project overview, a "How it works" section, and Login/Register buttons.
+
 ### Citizen
 
 - Register and log in with email/password; edit profile
@@ -575,6 +579,7 @@ grievance-system/
 │   │   │   ├── dashboard/           # StatCard, ChartWidget, etc.
 │   │   │   └── layout/              # Navbar, Sidebar, Footer
 │   │   ├── pages/
+│   │   │   ├── public/              # Landing.jsx (project overview, how it works, login/register CTA)
 │   │   │   ├── auth/                # Login, Register
 │   │   │   ├── citizen/             # FileGrievance, MyGrievances, GrievanceDetail
 │   │   │   ├── officer/             # OfficerDashboard, UpdateGrievance

@@ -63,7 +63,10 @@ export const GrievanceDetail = () => {
     try {
       const res = await grievanceApi.getGrievanceById(id);
       if (res.data?.success && res.data?.data?.grievance) {
-        setGrievance(res.data.data.grievance);
+        const item = res.data.data.grievance;
+        item.statusHistory = res.data.data.statusHistory || item.statusHistory || [];
+        item.comments = res.data.data.comments || item.comments || [];
+        setGrievance(item);
       }
     } catch (err) {
       setError(getErrorMessage(err));

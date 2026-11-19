@@ -23,6 +23,8 @@ import Profile from './pages/citizen/Profile';
 
 // Officer & Admin Pages
 import OfficerDashboard from './pages/officer/OfficerDashboard';
+import UpdateGrievance from './pages/officer/UpdateGrievance';
+import OfficerProfile from './pages/officer/OfficerProfile';
 import AdminDashboard from './pages/admin/AdminDashboard';
 
 // Helper route for '/' landing
@@ -100,7 +102,8 @@ export const App = () => {
             <Route element={<DashboardLayout />}>
               <Route path="/officer" element={<OfficerDashboard />} />
               <Route path="/officer/grievances" element={<OfficerDashboard />} />
-              <Route path="/officer/profile" element={<OfficerDashboard />} />
+              <Route path="/officer/grievances/:id" element={<UpdateGrievance />} />
+              <Route path="/officer/profile" element={<OfficerProfile />} />
             </Route>
           </Route>
 

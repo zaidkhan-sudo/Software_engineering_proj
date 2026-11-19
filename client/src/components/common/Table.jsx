@@ -8,14 +8,14 @@ export const Table = ({ children, className = '', ...props }) => (
   </div>
 );
 
-export const TableHeader = ({ children, className = '', ...props }) => (
+export const TableHead = ({ children, className = '', ...props }) => (
   <thead className={`bg-slate-50 border-b border-slate-200 text-xs font-semibold text-slate-600 uppercase tracking-wider ${className}`} {...props}>
     {children}
   </thead>
 );
 
-export const TableHead = ({ children, className = '', ...props }) => (
-  <th className={`px-4 py-3 font-semibold text-slate-700 ${className}`} {...props}>
+export const TableHeader = ({ children, className = '', ...props }) => (
+  <th className={`px-4 py-3 font-semibold text-slate-700 text-xs tracking-wider whitespace-nowrap align-middle ${className}`} {...props}>
     {children}
   </th>
 );

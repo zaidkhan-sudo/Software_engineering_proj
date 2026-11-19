@@ -25,7 +25,14 @@ import Profile from './pages/citizen/Profile';
 import OfficerDashboard from './pages/officer/OfficerDashboard';
 import UpdateGrievance from './pages/officer/UpdateGrievance';
 import OfficerProfile from './pages/officer/OfficerProfile';
+// Admin Pages
 import AdminDashboard from './pages/admin/AdminDashboard';
+import Analytics from './pages/admin/Analytics';
+import ManageDepartments from './pages/admin/ManageDepartments';
+import ManageUsers from './pages/admin/ManageUsers';
+import AllGrievances from './pages/admin/AllGrievances';
+import AdminGrievanceDetail from './pages/admin/AdminGrievanceDetail';
+import AuditLog from './pages/admin/AuditLog';
 
 // Helper route for '/' landing
 const HomeRoute = () => {
@@ -111,11 +118,12 @@ export const App = () => {
           <Route element={<RoleRoute allowedRoles={[ROLES.ADMIN]} />}>
             <Route element={<DashboardLayout />}>
               <Route path="/admin" element={<AdminDashboard />} />
-              <Route path="/admin/grievances" element={<AdminDashboard />} />
-              <Route path="/admin/departments" element={<AdminDashboard />} />
-              <Route path="/admin/users" element={<AdminDashboard />} />
-              <Route path="/admin/categories" element={<AdminDashboard />} />
-              <Route path="/admin/audit-logs" element={<AdminDashboard />} />
+              <Route path="/admin/analytics" element={<Analytics />} />
+              <Route path="/admin/grievances" element={<AllGrievances />} />
+              <Route path="/admin/grievances/:id" element={<AdminGrievanceDetail />} />
+              <Route path="/admin/departments" element={<ManageDepartments />} />
+              <Route path="/admin/users" element={<ManageUsers />} />
+              <Route path="/admin/audit-logs" element={<AuditLog />} />
             </Route>
           </Route>
 

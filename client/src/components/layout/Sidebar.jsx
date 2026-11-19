@@ -24,12 +24,12 @@ export const Sidebar = () => {
     switch (role) {
       case ROLES.ADMIN:
         return [
-          { to: '/admin', label: 'Analytics Dashboard', icon: BarChart3, end: true },
+          { to: '/admin', label: 'Operations Overview', icon: LayoutDashboard, end: true },
+          { to: '/admin/analytics', label: 'Analytics Reports', icon: BarChart3 },
           { to: '/admin/grievances', label: 'All Grievances', icon: FileText },
           { to: '/admin/departments', label: 'Departments', icon: Building2 },
           { to: '/admin/users', label: 'User Directory', icon: Users },
-          { to: '/admin/categories', label: 'Categories', icon: Tag },
-          { to: '/admin/audit-logs', label: 'Audit Logs', icon: ClipboardList }
+          { to: '/admin/audit-logs', label: 'System Audit Logs', icon: ClipboardList }
         ];
 
       case ROLES.OFFICER:

@@ -67,7 +67,7 @@ This file is the **step-by-step build plan**. `README.md` is the **source of tru
 - [x] Phase 9 — Client foundation
 - [x] Phase 10 — Citizen pages
 - [x] Phase 11 — Officer pages
-- [ ] Phase 12 — Admin pages
+- [x] Phase 12 — Admin pages
 - [ ] Phase 13 — Real-time notifications in the UI
 - [ ] Phase 14 — Electron desktop shell
 - [ ] Phase 15 — Deployment and installers

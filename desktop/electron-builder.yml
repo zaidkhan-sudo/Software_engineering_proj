@@ -1,0 +1,17 @@
+appId: com.grievance.tracker
+productName: Grievance Tracker
+directories:
+  output: release
+files:
+  - dist/**/*
+  - main.js
+  - preload.js
+win:
+  target: nsis
+  icon: assets/icon.ico
+mac:
+  target: dmg
+  icon: assets/icon.icns
+nsis:
+  oneClick: false
+  allowToChangeInstallationDirectory: true

@@ -1,0 +1,23 @@
+{
+  "name": "grievance-tracker-desktop",
+  "version": "1.0.0",
+  "description": "Electron desktop shell for the Public Grievance Tracking System",
+  "main": "main.js",
+  "scripts": {
+    "dev": "electron .",
+    "build:mac": "electron-builder --mac --publish never",
+    "build:win": "electron-builder --win --publish never",
+    "copy-client": "node scripts/copy-client.js"
+  },
+  "keywords": [
+    "electron",
+    "grievance-tracker",
+    "desktop"
+  ],
+  "author": "Municipal Grievance Portal Team",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^33.2.1",
+    "electron-builder": "^25.1.8"
+  }
+}

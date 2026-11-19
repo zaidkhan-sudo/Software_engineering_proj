@@ -69,7 +69,7 @@ This file is the **step-by-step build plan**. `README.md` is the **source of tru
 - [x] Phase 11 — Officer pages
 - [x] Phase 12 — Admin pages
 - [x] Phase 13 — Real-time notifications in the UI
-- [ ] Phase 14 — Electron desktop shell
+- [x] Phase 14 — Electron desktop shell
 - [ ] Phase 15 — Deployment and installers
 - [ ] Phase 16 — Final documentation and polish
 

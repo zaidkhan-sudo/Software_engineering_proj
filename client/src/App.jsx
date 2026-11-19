@@ -12,6 +12,7 @@ import RoleRoute from './components/auth/RoleRoute';
 import Landing from './pages/public/Landing';
 import Login from './pages/auth/Login';
 import Register from './pages/auth/Register';
+import Notifications from './pages/common/Notifications';
 
 // Citizen Pages
 import CitizenDashboard from './pages/citizen/CitizenDashboard';
@@ -124,6 +125,13 @@ export const App = () => {
               <Route path="/admin/departments" element={<ManageDepartments />} />
               <Route path="/admin/users" element={<ManageUsers />} />
               <Route path="/admin/audit-logs" element={<AuditLog />} />
+            </Route>
+          </Route>
+
+          {/* Common Authenticated Routes */}
+          <Route element={<RoleRoute />}>
+            <Route element={<DashboardLayout />}>
+              <Route path="/notifications" element={<Notifications />} />
             </Route>
           </Route>
 

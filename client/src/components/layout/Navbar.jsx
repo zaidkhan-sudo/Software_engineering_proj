@@ -1,7 +1,8 @@
 import React from 'react';
-import { Landmark, Bell, LogOut, User as UserIcon } from 'lucide-react';
+import { Landmark, LogOut, User as UserIcon } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import Button from '../common/Button';
+import NotificationBell from './NotificationBell';
 
 export const Navbar = () => {
   const { user, logout } = useAuth();
@@ -29,16 +30,8 @@ export const Navbar = () => {
 
       {/* Right Controls */}
       <div className="flex items-center space-x-4">
-        {/* Notification Bell Placeholder (wired in Phase 13) */}
-        <button
-          type="button"
-          className="relative p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-50 rounded-md transition-colors"
-          title="Notifications"
-          aria-label="View notifications"
-        >
-          <Bell className="w-5 h-5" />
-          <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-primary-600 rounded-full" />
-        </button>
+        {/* Real-time Notification Bell Popover */}
+        <NotificationBell />
 
         <div className="h-5 w-px bg-slate-200 hidden sm:block" />
 
